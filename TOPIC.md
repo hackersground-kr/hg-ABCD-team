@@ -33,9 +33,10 @@ ABCD
 
 ## 제품 소개 슬라이드
 
-**(필수)** 제품 또는 서비스를 소개하는 슬라이드 덱을 리포지토리에 추가해 주세요. 슬라이드 덱은 [decks](./decks) 디렉토리에 저장한 후 이곳에 링크를 걸어주세요.
+![스크린샷 2024-08-26 221625](https://github.com/user-attachments/assets/76fad1e0-9fd6-4438-a9e4-4e6bb194d696)
+
 
 ## 제품 소개 동영상
 
 제품 또는 서비스를 소개하는 동영상을 YouTube와 같은 곳에 업로드하고 동영상 링크를 적어주세요.
-https://www.youtube.com/watch?v=gQBV14Jgwh8
+https://www.youtube.com/watch?v=VDbyGA0iWtQ
