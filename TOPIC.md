@@ -1,4 +1,4 @@
-# `ABCD` 의성 시장 살림 웹사이트
+[우리동네...pdf](https://github.com/user-attachments/files/16755896/default.pdf)# `ABCD` 의성 시장 살림 웹사이트
 
 ABCD
 의성의 전통시장 활성화를 위한 웹을 만들 것이다..
@@ -32,8 +32,9 @@ ABCD
 
 
 ## 제품 소개 슬라이드
+[우리동네...pdf](https://github.com/user-attachments/files/16755898/default.pdf)
 
-![스크린샷 2024-08-26 221625](https://github.com/user-attachments/assets/76fad1e0-9fd6-4438-a9e4-4e6bb194d696)
+
 
 
 ## 제품 소개 동영상
