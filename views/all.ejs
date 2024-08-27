@@ -14,7 +14,7 @@
             <ul>
                 <li><img src="./img/main_icon/main_icon.png" alt="메인 페이지" id="main_img"></li>
                 <li>
-                    <h1>우리동네</h1>
+                    <h1 id="main_h1">우리동네</h1>
                 </li>
                 <li>
                     <form id="search_input">
@@ -57,14 +57,14 @@
     <main>
         <h1 style="text-align: center; margin-top: 130px;">오늘의 상품</h1>
         <div id="cards">
-            <% for(let i = 0; i < 15; i++) { %>
-                <% if (i >= post.length) break; %>
+            <% for(let i = 0; i < post.length; i++) { %>
                 <div class="card">
                     <!-- <img src="./img/slide_img1.png" alt=""> -->
                     <div></div>
-                    <p>제목: <%= post[i].title %></p>
+                    <p id="font">제목: <%= post[i].title %></p>
                     <p>가격: <%= post[i].price %></p>
                     <p>설명: <%= post[i].content %></p>
+                    <p id="post_id">게시글 아이디: <%= post[i].id %></p>
                 </div>
             <% } %>
         </div>
@@ -84,4 +84,18 @@
     </footer>    
 </body>
     <script src="/js/all.js"></script>
+    <script>
+        const cards = document.querySelectorAll('.card');
+    
+        cards.forEach(card => {
+            card.addEventListener('click', function() {
+                const idElement = card.querySelector('#post_id');
+                if (idElement) {
+                    // 숫자만 추출하기 위해 정규 표현식을 사용합니다.
+                    const postId = idElement.innerText.match(/\d+/)[0];
+                    window.location.href = `/post/${postId}`;
+                } 
+            });
+        });
+    </script>
 </html>

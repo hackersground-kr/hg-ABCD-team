@@ -41,7 +41,7 @@ app.get('/', async (req, res) => {
         // console.log(posts);
         res.render("index",{
             name : req.session.username,
-            post : posts
+            post : posts,
         });
     } catch (err) {
         console.log(err);
@@ -66,9 +66,40 @@ app.get('/all', async (req, res) => {
     }
 })
 
+app.get('/user', async (req, res) => {
+    if (!req.session.username) {
+        res.status(400).send('<script>alert("로그인이 필요한 기능입니다."); window.location.href="/";</script>');
+        return
+    } 
+    const db = await pool.getConnection();
+    try {
+        const [point] = await db.query('SELECT point, role FROM users where username = ?',[req.session.username]);
+        res.render("user",{
+            name : req.session.username,
+            point : point[0].point,
+            role : point[0].role
+        });
+    } catch (err) {
+        console.log(err)
+    } finally {
+        db.release();
+    }
+});
 
-app.get('/season', (req, res) => {
-    res.render("season",{name : req.session.username});
+
+app.get('/season', async (req, res) => {
+    const db = await pool.getConnection();
+    try {
+        const [posts] = await db.query('SELECT * FROM posts');
+        res.render("season",{
+            name : req.session.username,
+            post : posts
+        });
+    } catch (err) {
+        console.log(err)
+    } finally {
+        db.release();
+    }
 })
 
 app.get('/signup', (req, res) => {
@@ -149,7 +180,7 @@ app.post('/signup_c', upload.none(), async (req, res) => {
         if (overlab.length > 0) {
             res.json('overlab');
         } else {
-            await db.query('insert into users (username, password, phonenum, role) values(?, ?, ?, "buyer")',[username, password, phonenum]);
+            await db.query('insert into users (username, password, phonenum, role, point) values(?, ?, ?, "buyer", 0)',[username, password, phonenum]);
             res.json('success');
         }
     } catch (err) {
@@ -185,6 +216,48 @@ app.post('/login', async (req, res) => {
             res.json("no");
         }
     } catch(err) {
+        console.log(err)
+    } finally {
+        db.release();
+    }
+})
+
+
+app.get('/post/:id', async (req, res) => {
+    const db = await pool.getConnection();
+    try {
+        const [post_inform] = await db.query('SELECT * FROM posts WHERE id = ?', [req.params.id]);
+        res.render("post", {
+            name: req.session.username,
+            title: post_inform[0].title,
+            price: post_inform[0].price,  // z'peice' 오타 수정
+            content: post_inform[0].content,
+            we : post_inform[0].위치,
+            post : req.params.id
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    } finally {
+        db.release();
+    }
+});
+
+app.get('/write_post', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/html/write.html'));
+})
+
+app.post('/write_post', async (req, res) => {
+    const db = await pool.getConnection();
+    try {
+        await db.query('insert into posts (title, payment, price, content, 위치) values(?, ?, ?, ?, ?)',
+        [req.body.title,
+        req.body.payment,
+         req.body.price,
+          req.body.b_title,
+           req.body.we])
+           res.redirect('/');
+    } catch (err) {
         console.log(err)
     } finally {
         db.release();

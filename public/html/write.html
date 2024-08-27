@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/write.css">
+    <title>우리동네</title>
+</head>
+<body>
+    <form action="/write_post" method="post">
+        <h1>게시글 작성</h1>
+        <p>물품의 정보를 넣어주세요</p>
+        <input type="text" placeholder="제목" name="title">
+        <textarea placeholder="자세한 설명" name="b_title"></textarea>
+        <select name="payment">
+            <option value="cash">현금거래</option>
+            <option value="card_pay">카드거래(페이)</option>
+        </select>
+        <input type="text" placeholder="가격" name="price">
+        <input type="text" placeholder="위치" name="we">
+        <input type="submit" value="게시글 작성">
+    </form>
+</body>
+</html>

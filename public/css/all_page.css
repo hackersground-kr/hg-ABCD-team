@@ -1,3 +1,33 @@
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Paperlogy-8ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+#cards .card:nth-child(1) div {
+    background-size: cover;
+    background-image: url(../img/images.jpg);
+}
+
+#cards .card:nth-child(2) div {
+    background-size: cover;
+    background-image: url(../img/specialties04.jpg);
+}
+
+#cards .card:nth-child(3) div {
+    background-size: cover;
+    background-image: url(../img/post22.jpg);
+}
+
+
 body {
     margin: 0;
     overflow: auto;
@@ -8,6 +38,26 @@ main {
     width: 1530px;
 }
 
+#main_h1 {
+    font-family: 'TheJamsil5Bold';
+    font-weight: 1000;
+}
+.card {
+    font-weight: 100;
+    font-family: 'Paperlogy-8ExtraBold';
+}
+
+#main_h1 {
+    font-family: 'TheJamsil5Bold';
+    font-weight: 1000;
+}
+
+#font {
+    font-size: 20px;
+    font-family: 'TheJamsil5Bold';
+    font-weight: 800;
+    font-style: normal;
+}
 
 .slider-container {
     z-index: 0;

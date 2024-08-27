@@ -14,7 +14,7 @@
             <ul>
                 <li><img src="/img/main_icon/main_icon.png" alt="메인 페이지" id="main_img"></li>
                 <li>
-                    <h1>우리동네</h1>
+                    <h1 id="main_h1">우리동네</h1>
                 </li>
                 <li>
                     <form id="search_input">
@@ -47,7 +47,7 @@
                     <% } %>
                 </li>
                 <li id="user_icon">
-                    <a href=""><img src="/img/icon/user_icon.png" alt=""></a>
+                    <a href="/user"><img src="/img/icon/user_icon.png" alt=""></a>
                 </li>
             </ul>
         </nav>
@@ -55,25 +55,24 @@
     <main>
         <div class="slider-container">
             <div class="slider">
-                <img src="/img/slide_img/slide_img1.png" alt="Image 1" class="slide active">
+                <img src="/img/slide_img/slide_img1.png" alt="Image 1" class="slide">
                 <img src="/img/slide_img/slide_img2.png" alt="Image 2" class="slide">
                 <img src="/img/slide_img/slide_img3.png" alt="Image 3" class="slide">
-                <img src="/img/slide_img/slide_img4.png" alt="Image 3" class="slide">
+                <img src="/img/slide_img/slide_img4.png" alt="Image 4" class="slide">
             </div>
-            <button class="prev" onclick="prevSlide()">&#10094;</button>
-            <button class="next" onclick="nextSlide()">&#10095;</button>
-        </div>
+        </div>             
         <h1 style="text-align: center; margin-top: 35px;">오늘의 상품</h1>
-        <a href="/all" style="margin-left: 1260px;">전체 상품 보기</a>
+        <a href="/all" style="margin-left: 1250px;">전체 상품 보기</a>
         <div id="cards">
             <% for(let i = 0; i < 15; i++) { %>
                 <% if (i >= post.length) break; %>
                 <div class="card">
                     <!-- <img src="./img/slide_img1.png" alt=""> -->
                     <div></div>
-                    <p>제목: <%= post[i].title %></p>
-                    <p>가격: <%= post[i].price %></p>
+                    <p id="font">제목: <%= post[i].title %></p>
+                    <p>가격: <%= post[i].price %> 원</p>
                     <p>설명: <%= post[i].content %></p>
+                    <p id="post_id">게시글 아이디: <%= post[i].id %></p>
                 </div>
             <% } %>
         </div>
@@ -97,4 +96,18 @@
 </body>
     <script src="../js/app.js"></script>
     <script src="../js/all.js"></script>
+    <script>
+        const cards = document.querySelectorAll('.card');
+    
+        cards.forEach(card => {
+            card.addEventListener('click', function() {
+                const idElement = card.querySelector('#post_id');
+                if (idElement) {
+                    // 숫자만 추출하기 위해 정규 표현식을 사용합니다.
+                    const postId = idElement.innerText.match(/\d+/)[0];
+                    window.location.href = `/post/${postId}`;
+                } 
+            });
+        });
+    </script>
 </html>
